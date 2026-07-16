@@ -1,0 +1,62 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+:root {
+  --navy: #19356E;
+  --royal: #2164B4;
+  --bright-blue: #2A8BD4;
+  --teal: #1EA4B6;
+  --cyan: #22C1C7;
+  --light-blue: #E6F5F7;
+  --soft-gray: #F7FAFC;
+  --text-gray: #4B5563;
+  --border: #DCEAF0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  color: #0f172a;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* Brand gradient utilities */
+.brand-gradient {
+  background-image: linear-gradient(135deg, #19356E 0%, #2164B4 38%, #1EA4B6 74%, #22C1C7 100%);
+}
+.brand-gradient-text {
+  background-image: linear-gradient(135deg, #19356E 0%, #2164B4 38%, #1EA4B6 74%, #22C1C7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #F7FAFC; }
+::-webkit-scrollbar-thumb { background: #DCEAF0; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #2A8BD4; }
+/* Infinite marquee for trusted logos */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+/* Subtle floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-slow { animation: float 9s ease-in-out infinite; }
