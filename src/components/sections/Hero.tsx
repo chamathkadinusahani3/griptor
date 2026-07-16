@@ -54,13 +54,7 @@ export const Hero = () => {
         {/* Left Content */}
         <div className="max-w-2xl">
           <Reveal delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--light-blue)] border border-[var(--border)] text-[var(--teal)] text-sm font-semibold mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--teal)] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--teal)]"></span>
-              </span>
-              GRIPTOR OS 2.0 is now live
-            </div>
+           
           </Reveal>
 
           <Reveal delay={0.2}>
@@ -105,10 +99,6 @@ export const Hero = () => {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-[var(--border)]">
               {[
               {
-                label: 'Business Clients',
-                value: '100+'
-              },
-              {
                 label: 'Cloud Uptime',
                 value: '99.9%'
               },
@@ -116,10 +106,7 @@ export const Hero = () => {
                 label: 'Support',
                 value: '24/7'
               },
-              {
-                label: 'Vehicles Managed',
-                value: '50,000+'
-              }].
+              ].
               map((stat, i) =>
               <div key={i}>
                   <div className="text-2xl font-bold text-[var(--navy)] mb-1">

@@ -110,15 +110,15 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-[var(--text-gray)]">
                 <Mail className="w-5 h-5 text-[var(--teal)] shrink-0" />
-                <span>hello@griptortech.com</span>
+                <span>info@griptortech.com</span>
               </li>
               <li className="flex items-start gap-3 text-[var(--text-gray)]">
                 <Phone className="w-5 h-5 text-[var(--teal)] shrink-0" />
-                <span>+1 (800) 123-4567</span>
+                <span>+94 723 89 8989</span>
               </li>
               <li className="flex items-start gap-3 text-[var(--text-gray)]">
                 <MapPin className="w-5 h-5 text-[var(--teal)] shrink-0" />
-                <span>123 Innovation Drive, Tech District, CA 94043</span>
+                <span> 278, 2 High Level Rd, Pannipitiya</span>
               </li>
             </ul>
           </div>

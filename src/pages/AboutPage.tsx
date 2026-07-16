@@ -2,7 +2,7 @@ import React from 'react';
 import { WhyChoose } from '../components/sections/WhyChoose';
 import { Process } from '../components/sections/Process';
 
-import { Testimonials } from '../components/sections/Testimonials';
+
 import { CTASection } from '../components/sections/CTASection';
 import { SectionHeading } from '../components/ui/SectionHeading';
 export const AboutPage = () => {
@@ -20,7 +20,7 @@ export const AboutPage = () => {
      
       <WhyChoose />
       <Process />
-      <Testimonials />
+     
       <CTASection />
     </div>);
 

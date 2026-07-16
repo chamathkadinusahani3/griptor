@@ -1,31 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
 import { Button } from '../ui/Button';
 import { ArrowRight, Check } from 'lucide-react';
-const PRODUCTS = [
-{
-  title: 'Garage Management System',
-  desc: 'The ultimate operating system for modern repair shops.',
-  features: [
-  'Job Cards & Estimates',
-  'Technician Tracking',
-  'Digital Inspections'],
-
-  color: 'from-[var(--navy)] to-[var(--royal)]'
-},
-{
-  title: 'Inventory & POS',
-  desc: 'Never run out of stock. Process payments instantly.',
-  features: ['Barcode Scanning', 'Low Stock Alerts', 'Supplier Management'],
-  color: 'from-[var(--teal)] to-[var(--cyan)]'
-},
-{
-  title: 'Customer CRM',
-  desc: 'Build loyalty with automated communication.',
-  features: ['Service Reminders', 'WhatsApp Integration', 'Feedback System'],
-  color: 'from-[var(--royal)] to-[var(--bright-blue)]'
-}];
+import { PRODUCTS } from '../../data/products';
 
 export const ProductShowcase = () => {
   return (
@@ -80,12 +59,14 @@ export const ProductShowcase = () => {
                   )}
                   </ul>
 
-                  <Button
-                  variant="outline"
-                  className="w-full group-hover:bg-[var(--navy)] group-hover:text-white group-hover:border-[var(--navy)]">
-                  
-                    Learn More <ArrowRight className="w-4 h-4" />
-                  </Button>
+                  <Link to={`/products/${product.slug}`}>
+                    <Button
+                    variant="outline"
+                    className="w-full group-hover:bg-[var(--navy)] group-hover:text-white group-hover:border-[var(--navy)]">
+
+                      Learn More <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Reveal>

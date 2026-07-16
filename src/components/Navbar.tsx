@@ -29,10 +29,7 @@ const NAV_LINKS = [
   label: 'About',
   to: '/about'
 },
-{
-  label: 'Blog',
-  to: '/blog'
-},
+
 {
   label: 'Contact',
   to: '/contact'
