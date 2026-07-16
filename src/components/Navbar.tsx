@@ -34,10 +34,6 @@ const NAV_LINKS = [
   to: '/blog'
 },
 {
-  label: 'Careers',
-  to: '/careers'
-},
-{
   label: 'Contact',
   to: '/contact'
 }];

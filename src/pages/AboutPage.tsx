@@ -1,7 +1,7 @@
 import React from 'react';
 import { WhyChoose } from '../components/sections/WhyChoose';
 import { Process } from '../components/sections/Process';
-import { Stats } from '../components/sections/Stats';
+
 import { Testimonials } from '../components/sections/Testimonials';
 import { CTASection } from '../components/sections/CTASection';
 import { SectionHeading } from '../components/ui/SectionHeading';
@@ -17,7 +17,7 @@ export const AboutPage = () => {
           
         </div>
       </section>
-      <Stats />
+     
       <WhyChoose />
       <Process />
       <Testimonials />

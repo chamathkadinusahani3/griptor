@@ -7,17 +7,17 @@ const CONTACT_INFO = [
 {
   icon: Mail,
   label: 'Email',
-  value: 'hello@griptortech.com'
+  value: 'info@griptortech.com'
 },
 {
   icon: Phone,
   label: 'Phone',
-  value: '+1 (800) 123-4567'
+  value: '+94 723 45 6789'
 },
 {
   icon: MapPin,
   label: 'Office',
-  value: '123 Innovation Drive, Tech District, CA 94043'
+  value: '278, 2 High Level Rd, Pannipitiya'
 }];
 
 const inputClass =
