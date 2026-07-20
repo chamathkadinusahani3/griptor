@@ -151,5 +151,149 @@ export const PRODUCTS: Product[] = [
         addOnPrice: '$25'
       }
     ]
+  },
+  {
+    slug: 'workshop-management',
+    title: 'Workshop Management',
+    desc: 'Optimize bay utilization and technician scheduling.',
+    longDescription:
+      'Get a real-time view of every bay in your shop. Workshop Management shows which bays are free, occupied, or in maintenance, so you can schedule work and technicians without guesswork or double-booking.',
+    features: ['Bay Availability Board', 'Job-to-Bay Assignment', 'Technician Scheduling'],
+    color: 'from-[var(--navy)] to-[var(--teal)]',
+    price: '$45',
+    modules: [
+      { name: 'Bay Availability Board', desc: 'A live board showing which bays are free, occupied, or under maintenance.', included: true },
+      { name: 'Job-to-Bay Assignment', desc: 'Assign an active job card to a bay and track it through to completion.', included: true },
+      { name: 'Technician Scheduling', desc: 'See which technician is working which bay, in real time.', included: true },
+      { name: 'Capacity Forecasting', desc: 'Predict daily bay capacity based on booked jobs.', included: false, addOnPrice: '$20' },
+      { name: 'Maintenance Logs', desc: 'Track equipment maintenance and downtime per bay.', included: false, addOnPrice: '$15' },
+      { name: 'Multi-location Support', desc: 'Manage bays across multiple branches.', included: false, addOnPrice: '$29' }
+    ]
+  },
+  {
+    slug: 'booking-system',
+    title: 'Booking System',
+    desc: 'Online appointment scheduling with automated reminders.',
+    longDescription:
+      'Let customers book a service slot without a phone call. Booking System manages appointments end to end — from request to confirmation to automated reminders — so your front desk spends less time on the phone.',
+    features: ['Appointment Scheduling', 'Status Tracking', 'Automated Reminders'],
+    color: 'from-[var(--royal)] to-[var(--cyan)]',
+    price: '$35',
+    modules: [
+      { name: 'Appointment Scheduling', desc: 'Create and manage bookings against a customer, vehicle, and date.', included: true },
+      { name: 'Status Tracking', desc: 'Move bookings through pending, confirmed, and completed.', included: true },
+      { name: 'Automated Reminders', desc: 'Reminders sent ahead of an upcoming appointment.', included: true },
+      { name: 'Online Booking Widget', desc: 'A public booking form customers can fill in themselves.', included: false, addOnPrice: '$25' },
+      { name: 'Calendar Sync', desc: 'Sync bookings with Google or Outlook calendars.', included: false, addOnPrice: '$18' },
+      { name: 'No-show Tracking', desc: 'Flag and follow up on missed appointments.', included: false, addOnPrice: '$12' }
+    ]
+  },
+  {
+    slug: 'fleet-management',
+    title: 'Fleet Management',
+    desc: 'Comprehensive tools for managing large vehicle fleets.',
+    longDescription:
+      'Servicing a fleet is different from servicing one car at a time. Fleet Management groups a customer’s vehicles together so you can track status, service history, and turnaround across the whole fleet at a glance.',
+    features: ['Fleet Grouping', 'Per-vehicle Status', 'Fleet Service History'],
+    color: 'from-[var(--bright-blue)] to-[var(--navy)]',
+    price: '$55',
+    modules: [
+      { name: 'Fleet Grouping', desc: 'Group a company or customer’s vehicles under one fleet record.', included: true },
+      { name: 'Per-vehicle Status', desc: 'Track each vehicle’s status — active, in service, or retired.', included: true },
+      { name: 'Fleet Service History', desc: 'A shared history view across every vehicle in a fleet.', included: true },
+      { name: 'Fleet Billing Summary', desc: 'Consolidated invoicing across an entire fleet.', included: false, addOnPrice: '$25' },
+      { name: 'Driver Assignment', desc: 'Assign and track drivers per vehicle.', included: false, addOnPrice: '$15' },
+      { name: 'Custom Branding', desc: 'White-label fleet reports for corporate customers.', included: false, addOnPrice: '$19' }
+    ]
+  },
+  {
+    slug: 'customer-mobile-app',
+    title: 'Customer Mobile App',
+    desc: 'White-labeled app for your customers to track services.',
+    longDescription:
+      'Give customers a way to check on their vehicle without calling you. Customer Mobile App provides a branded lookup experience so customers can check job status by phone number or plate, any time.',
+    features: ['Service Status Lookup', 'Branded Experience', 'Shareable Access Link'],
+    color: 'from-[var(--teal)] to-[var(--royal)]',
+    price: '$45',
+    modules: [
+      { name: 'Service Status Lookup', desc: 'Customers look up their vehicle’s current job status by phone or plate.', included: true },
+      { name: 'Branded Experience', desc: 'Your shop’s name and logo on every customer-facing screen.', included: true },
+      { name: 'Shareable Access Link', desc: 'A link or QR code customers can use to check status anytime.', included: true },
+      { name: 'Push Notifications', desc: 'Notify customers automatically when their vehicle status changes.', included: false, addOnPrice: '$25' },
+      { name: 'Service History Access', desc: 'Let customers view their own past visits and invoices.', included: false, addOnPrice: '$20' },
+      { name: 'In-app Feedback', desc: 'Collect reviews directly through the customer experience.', included: false, addOnPrice: '$15' }
+    ]
+  },
+  {
+    slug: 'vehicle-inspection',
+    title: 'Vehicle Inspection',
+    desc: 'Digital multi-point inspection forms with photo uploads.',
+    longDescription:
+      'Replace the paper checklist. Vehicle Inspection records a structured, digital multi-point inspection for every vehicle — pass, advisory, or fail — tied directly to the customer and technician who performed it.',
+    features: ['Digital Inspection Reports', 'Pass/Advisory/Fail Results', 'Inspection History'],
+    color: 'from-[var(--cyan)] to-[var(--navy)]',
+    price: '$25',
+    modules: [
+      { name: 'Digital Inspection Reports', desc: 'Structured multi-point inspection forms per vehicle.', included: true },
+      { name: 'Pass/Advisory/Fail Results', desc: 'A clear result on every inspected item.', included: true },
+      { name: 'Inspection History', desc: 'A searchable history of every inspection performed.', included: true },
+      { name: 'Photo & Video Uploads', desc: 'Attach photos and video directly to inspection items.', included: false, addOnPrice: '$20' },
+      { name: 'Customer-facing Reports', desc: 'Share a formatted inspection report with the customer.', included: false, addOnPrice: '$18' },
+      { name: 'Custom Checklists', desc: 'Build inspection templates specific to your shop.', included: false, addOnPrice: '$15' }
+    ]
+  },
+  {
+    slug: 'accounting',
+    title: 'Accounting',
+    desc: 'Integrated financial tracking, invoicing, and tax reporting.',
+    longDescription:
+      'See what your shop actually makes. Accounting pulls real revenue from your job cards and point-of-sale, tracks expenses as you log them, and gives you a clear month-by-month picture of the numbers.',
+    features: ['Revenue Tracking', 'Expense Logging', 'Monthly Financial Summary'],
+    color: 'from-[var(--royal)] to-[var(--teal)]',
+    price: '$49',
+    modules: [
+      { name: 'Revenue Tracking', desc: 'Real revenue pulled automatically from completed jobs and sales.', included: true },
+      { name: 'Expense Logging', desc: 'Log and categorize shop expenses as they happen.', included: true },
+      { name: 'Monthly Financial Summary', desc: 'A month-by-month view of revenue, expenses, and net.', included: true },
+      { name: 'Tax Reporting', desc: 'Generate tax-ready summaries for your accountant.', included: false, addOnPrice: '$25' },
+      { name: 'Multi-location Rollup', desc: 'Combine financials across multiple branches.', included: false, addOnPrice: '$29' },
+      { name: 'Custom Categories', desc: 'Build expense categories specific to your shop.', included: false, addOnPrice: '$12' }
+    ]
+  },
+  {
+    slug: 'reports-analytics',
+    title: 'Reports & Analytics',
+    desc: 'Deep insights into revenue, performance, and growth.',
+    longDescription:
+      'Turn your shop’s data into decisions. Reports & Analytics brings revenue trends, technician performance, and customer growth into one dashboard, so you know what’s working and what needs attention.',
+    features: ['Revenue Trends', 'Technician Performance', 'Customer Growth Insights'],
+    color: 'from-[var(--bright-blue)] to-[var(--cyan)]',
+    price: '$39',
+    modules: [
+      { name: 'Revenue Trends', desc: 'Month-over-month revenue trends across jobs and sales.', included: true },
+      { name: 'Technician Performance', desc: 'Completed jobs and turnaround time per technician.', included: true },
+      { name: 'Customer Growth Insights', desc: 'New vs. returning customer trends over time.', included: true },
+      { name: 'Top Parts Report', desc: 'See your best-selling parts and categories.', included: false, addOnPrice: '$18' },
+      { name: 'Custom Dashboards', desc: 'Build a dashboard around the metrics that matter to you.', included: false, addOnPrice: '$25' },
+      { name: 'Scheduled Email Reports', desc: 'Get key metrics emailed to you on a schedule.', included: false, addOnPrice: '$15' }
+    ]
+  },
+  {
+    slug: 'cloud-hosting',
+    title: 'Cloud Hosting',
+    desc: 'Secure, 99.9% uptime enterprise-grade cloud infrastructure.',
+    longDescription:
+      'Every GRIPTOR plan runs on the same secure, enterprise-grade cloud infrastructure — automatic backups, encrypted data, and 99.9% uptime, with nothing for your shop to install or maintain.',
+    features: ['99.9% Uptime', 'Automatic Backups', 'Encrypted Data'],
+    color: 'from-[var(--navy)] to-[var(--bright-blue)]',
+    price: 'Included',
+    modules: [
+      { name: '99.9% Uptime', desc: 'Enterprise-grade infrastructure with industry-leading uptime.', included: true },
+      { name: 'Automatic Backups', desc: 'Your shop’s data is backed up automatically, every day.', included: true },
+      { name: 'Encrypted Data', desc: 'Data encrypted in transit and at rest.', included: true },
+      { name: 'Dedicated Environment', desc: 'An isolated hosting environment for large multi-location operators.', included: false, addOnPrice: '$49' },
+      { name: 'Custom Domain', desc: 'Run your admin portal on your own domain.', included: false, addOnPrice: '$15' },
+      { name: 'SLA & Priority Uptime Support', desc: 'A formal uptime SLA with priority incident response.', included: false, addOnPrice: '$39' }
+    ]
   }
 ];

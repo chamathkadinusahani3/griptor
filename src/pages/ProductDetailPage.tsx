@@ -119,11 +119,12 @@ export const ProductDetailPage = () => {
         <div className="max-w-3xl mx-auto px-6 text-center">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--navy)] mb-3">
-              Simple, Standalone Pricing
+              {product.price === 'Included' ? 'Included With Every Plan' : 'Simple, Standalone Pricing'}
             </h2>
             <p className="text-[var(--text-gray)] mb-10">
-              Get {product.title} on its own, or bundle it into a full GRIPTOR plan for
-              better value.
+              {product.price === 'Included'
+                ? `${product.title} isn't a separate add-on — every GRIPTOR plan runs on it automatically.`
+                : `Get ${product.title} on its own, or bundle it into a full GRIPTOR plan for better value.`}
             </p>
           </Reveal>
 
@@ -133,16 +134,17 @@ export const ProductDetailPage = () => {
                 <span className="text-5xl font-extrabold text-[var(--navy)]">
                   {product.price}
                 </span>
-                <span className="text-[var(--text-gray)]">/month</span>
+                {product.price !== 'Included' && <span className="text-[var(--text-gray)]">/month</span>}
               </div>
               <p className="text-sm text-[var(--text-gray)] mb-8">
-                Includes all core modules listed above. Optional add-ons billed
-                separately.
+                {product.price === 'Included'
+                  ? 'No signup or configuration needed — it comes standard with every GRIPTOR product.'
+                  : 'Includes all core modules listed above. Optional add-ons billed separately.'}
               </p>
               <div className="flex flex-col gap-3">
                 <Link to="/contact">
                   <Button variant="primary" className="w-full">
-                    Start Free Trial
+                    {product.price === 'Included' ? 'Talk to Sales' : 'Start Free Trial'}
                   </Button>
                 </Link>
                 <Link to="/pricing">
