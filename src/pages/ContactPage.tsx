@@ -3,6 +3,7 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 import { Reveal } from '../components/ui/Reveal';
 import { Button } from '../components/ui/Button';
 import { Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { postToAdmin, ApiError } from '../lib/api';
 const CONTACT_INFO = [
 {
   icon: Mail,
@@ -23,10 +24,27 @@ const CONTACT_INFO = [
 const inputClass =
 'w-full px-4 py-3 rounded-xl bg-[var(--soft-gray)] border border-[var(--border)] text-[var(--navy)] placeholder:text-[var(--text-gray)]/60 focus:outline-none focus:border-[var(--teal)] focus:ring-2 focus:ring-[var(--teal)]/20 transition-all';
 export const ContactPage = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [businessType, setBusinessType] = useState('Garage / Workshop');
+  const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError('');
+    try {
+      await postToAdmin('/leads/submit', { name, email, company, businessType, message });
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
   return (
     <div className="pt-20">
@@ -36,7 +54,7 @@ export const ContactPage = () => {
             badge="Contact Us"
             title="Let's Transform Your Business Together"
             subtitle="Book a live demo, start a free trial, or just ask us anything. Our team will get back to you within one business day." />
-          
+
 
           <div className="grid lg:grid-cols-5 gap-12 items-start">
             {/* Info */}
@@ -46,7 +64,7 @@ export const ContactPage = () => {
                 <div
                   key={i}
                   className="flex items-start gap-4 p-5 rounded-2xl bg-[var(--soft-gray)] border border-[var(--border)]">
-                  
+
                     <div className="w-12 h-12 rounded-xl brand-gradient flex items-center justify-center shrink-0">
                       <item.icon className="w-5 h-5 text-white" />
                     </div>
@@ -96,8 +114,10 @@ export const ContactPage = () => {
                         required
                         type="text"
                         placeholder="Jane Doe"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className={inputClass} />
-                      
+
                       </div>
                       <div>
                         <label className="block text-sm font-semibold text-[var(--navy)] mb-2">
@@ -107,8 +127,10 @@ export const ContactPage = () => {
                         required
                         type="email"
                         placeholder="jane@company.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className={inputClass} />
-                      
+
                       </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-5">
@@ -119,14 +141,19 @@ export const ContactPage = () => {
                         <input
                         type="text"
                         placeholder="Company name"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
                         className={inputClass} />
-                      
+
                       </div>
                       <div>
                         <label className="block text-sm font-semibold text-[var(--navy)] mb-2">
                           Business Type
                         </label>
-                        <select className={inputClass}>
+                        <select
+                        value={businessType}
+                        onChange={(e) => setBusinessType(e.target.value)}
+                        className={inputClass}>
                           <option>Garage / Workshop</option>
                           <option>Tyre Shop</option>
                           <option>Car Dealership</option>
@@ -144,16 +171,20 @@ export const ContactPage = () => {
                       required
                       rows={5}
                       placeholder="Tell us about your business and what you're looking for..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       className={inputClass} />
-                    
+
                     </div>
+                    {error && <p className="text-sm font-semibold text-red-600">{error}</p>}
                     <Button
                     type="submit"
                     size="lg"
                     className="w-full"
+                    disabled={submitting}
                     icon={<ArrowRight className="w-5 h-5" />}>
-                    
-                      Book Live Demo
+
+                      {submitting ? 'Sending…' : 'Book Live Demo'}
                     </Button>
                   </form>
                 }

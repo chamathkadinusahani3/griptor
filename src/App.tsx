@@ -11,6 +11,7 @@ import { AboutPage } from './pages/AboutPage';
 import { BlogPage } from './pages/BlogPage';
 
 import { ContactPage } from './pages/ContactPage';
+import { SignupPage } from './pages/SignupPage';
 export function App() {
   return (
     <BrowserRouter>
@@ -26,6 +27,7 @@ export function App() {
           <Route path="/blog" element={<BlogPage />} />
          
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/get-started" element={<SignupPage />} />
           <Route path="*" element={<Home />} />
         </Route>
       </Routes>

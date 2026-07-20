@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Reveal } from '../ui/Reveal';
 import { Button } from '../ui/Button';
 import { ArrowRight } from 'lucide-react';
@@ -37,12 +38,14 @@ export const CTASection = () => {
               
               Book Live Demo
             </Button>
-            <Button
-              size="lg"
-              className="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white">
-              
-              Start Free Trial
-            </Button>
+            <Link to="/get-started?plan=starter">
+              <Button
+                size="lg"
+                className="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white">
+
+                Start Free Trial
+              </Button>
+            </Link>
           </div>
         </Reveal>
       </div>

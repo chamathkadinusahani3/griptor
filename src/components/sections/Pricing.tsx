@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
 import { Button } from '../ui/Button';
@@ -85,14 +86,16 @@ export const Pricing = () => {
                 }
                 </div>
 
-                <Button
-                variant={plan.highlight ? 'primary' : 'outline'}
-                className="w-full mb-8">
-                
-                  {plan.price === 'Custom' ?
-                'Contact Sales' :
-                'Start Free Trial'}
-                </Button>
+                <Link className="block" to={plan.price === 'Custom' ? '/contact' : `/get-started?plan=${plan.name.toLowerCase()}`}>
+                  <Button
+                  variant={plan.highlight ? 'primary' : 'outline'}
+                  className="w-full mb-8">
+
+                    {plan.price === 'Custom' ?
+                  'Contact Sales' :
+                  'Start Free Trial'}
+                  </Button>
+                </Link>
 
                 <div className="space-y-4">
                   <div className="text-sm font-bold text-[var(--navy)] uppercase tracking-wider mb-4">
