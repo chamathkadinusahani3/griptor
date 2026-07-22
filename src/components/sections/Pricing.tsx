@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
 import { Button } from '../ui/Button';
+import { CurrencySelector } from '../ui/CurrencySelector';
+import { useCurrency } from '../../context/CurrencyContext';
+import { formatPrice } from '../../data/currencies';
 import { Check } from 'lucide-react';
 const PLANS = [
 {
   name: 'Starter',
   desc: 'Perfect for single-location independent garages.',
-  price: '$99',
+  priceUSD: 99,
   features: [
   'Garage Management',
   'Basic CRM',
@@ -21,7 +24,7 @@ const PLANS = [
 {
   name: 'Professional',
   desc: 'For growing businesses with advanced needs.',
-  price: '$249',
+  priceUSD: 249,
   features: [
   'Everything in Starter',
   'Inventory & POS',
@@ -36,7 +39,7 @@ const PLANS = [
 {
   name: 'Enterprise',
   desc: 'Custom solutions for large fleets and franchises.',
-  price: 'Custom',
+  priceUSD: null,
   features: [
   'Everything in Professional',
   'Unlimited Users',
@@ -49,6 +52,7 @@ const PLANS = [
 }];
 
 export const Pricing = () => {
+  const { currency, isLive, ratesUpdatedAt } = useCurrency();
   return (
     <section id="pricing" className="py-24 bg-[var(--soft-gray)]">
       <div className="max-w-7xl mx-auto px-6">
@@ -56,7 +60,17 @@ export const Pricing = () => {
           badge="Pricing Plans"
           title="Simple, Transparent Pricing"
           subtitle="Choose the plan that fits your business size and needs. No hidden fees." />
-        
+
+        <div className="flex flex-col items-center gap-3 mb-12">
+          <CurrencySelector />
+          {currency.code !== 'USD' && (
+            <p className="text-xs text-[var(--text-gray)]">
+              {isLive
+                ? `Live exchange rate${ratesUpdatedAt ? ` as of ${ratesUpdatedAt.toLocaleDateString()}` : ''} — all plans are billed in USD.`
+                : `Prices shown in ${currency.code} are approximate — all plans are billed in USD.`}
+            </p>
+          )}
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
           {PLANS.map((plan, i) =>
@@ -79,19 +93,19 @@ export const Pricing = () => {
 
                 <div className="mb-8">
                   <span className="text-4xl font-extrabold text-[var(--navy)]">
-                    {plan.price}
+                    {plan.priceUSD === null ? 'Custom' : formatPrice(plan.priceUSD, currency)}
                   </span>
-                  {plan.price !== 'Custom' &&
+                  {plan.priceUSD !== null &&
                 <span className="text-[var(--text-gray)]">/month</span>
                 }
                 </div>
 
-                <Link className="block" to={plan.price === 'Custom' ? '/contact' : `/get-started?plan=${plan.name.toLowerCase()}`}>
+                <Link className="block" to={plan.priceUSD === null ? '/contact' : `/get-started?plan=${plan.name.toLowerCase()}`}>
                   <Button
                   variant={plan.highlight ? 'primary' : 'outline'}
                   className="w-full mb-8">
 
-                    {plan.price === 'Custom' ?
+                    {plan.priceUSD === null ?
                   'Contact Sales' :
                   'Start Free Trial'}
                   </Button>

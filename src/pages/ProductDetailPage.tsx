@@ -2,12 +2,16 @@ import React from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { Reveal } from '../components/ui/Reveal';
 import { Button } from '../components/ui/Button';
+import { CurrencySelector } from '../components/ui/CurrencySelector';
 import { CTASection } from '../components/sections/CTASection';
 import { ArrowLeft, ArrowRight, Check, Plus } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
+import { useCurrency } from '../context/CurrencyContext';
+import { formatPrice } from '../data/currencies';
 
 export const ProductDetailPage = () => {
   const { slug } = useParams();
+  const { currency, isLive, ratesUpdatedAt } = useCurrency();
   const product = PRODUCTS.find((p) => p.slug === slug);
 
   if (!product) {
@@ -102,7 +106,9 @@ export const ProductDetailPage = () => {
                             ? 'bg-[var(--teal)]/10 text-[var(--teal)]'
                             : 'bg-white text-[var(--text-gray)] border border-[var(--border)]'
                         }`}>
-                        {module.included ? 'Included' : `+${module.addOnPrice}/mo`}
+                        {module.included
+                          ? 'Included'
+                          : `+${formatPrice(module.addOnPriceUSD ?? 0, currency)}/mo`}
                       </span>
                     </div>
                     <p className="text-sm text-[var(--text-gray)]">{module.desc}</p>
@@ -119,32 +125,47 @@ export const ProductDetailPage = () => {
         <div className="max-w-3xl mx-auto px-6 text-center">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--navy)] mb-3">
-              {product.price === 'Included' ? 'Included With Every Plan' : 'Simple, Standalone Pricing'}
+              {product.priceUSD === null ? 'Included With Every Plan' : 'Simple, Standalone Pricing'}
             </h2>
-            <p className="text-[var(--text-gray)] mb-10">
-              {product.price === 'Included'
+            <p className="text-[var(--text-gray)] mb-6">
+              {product.priceUSD === null
                 ? `${product.title} isn't a separate add-on — every GRIPTOR plan runs on it automatically.`
                 : `Get ${product.title} on its own, or bundle it into a full GRIPTOR plan for better value.`}
             </p>
           </Reveal>
 
+          {product.priceUSD !== null && (
+            <Reveal delay={0.05}>
+              <div className="flex flex-col items-center gap-3 mb-4">
+                <CurrencySelector />
+                {currency.code !== 'USD' && (
+                  <p className="text-xs text-[var(--text-gray)]">
+                    {isLive
+                      ? `Live exchange rate${ratesUpdatedAt ? ` as of ${ratesUpdatedAt.toLocaleDateString()}` : ''} — all plans are billed in USD.`
+                      : `Prices shown in ${currency.code} are approximate — all plans are billed in USD.`}
+                  </p>
+                )}
+              </div>
+            </Reveal>
+          )}
+
           <Reveal delay={0.1}>
-            <div className="bg-white rounded-3xl border border-[var(--border)] shadow-sm p-10 max-w-md mx-auto">
+            <div className="bg-white rounded-3xl border border-[var(--border)] shadow-sm p-10 max-w-md mx-auto mt-6">
               <div className="mb-6">
                 <span className="text-5xl font-extrabold text-[var(--navy)]">
-                  {product.price}
+                  {product.priceUSD === null ? 'Included' : formatPrice(product.priceUSD, currency)}
                 </span>
-                {product.price !== 'Included' && <span className="text-[var(--text-gray)]">/month</span>}
+                {product.priceUSD !== null && <span className="text-[var(--text-gray)]">/month</span>}
               </div>
               <p className="text-sm text-[var(--text-gray)] mb-8">
-                {product.price === 'Included'
+                {product.priceUSD === null
                   ? 'No signup or configuration needed — it comes standard with every GRIPTOR product.'
                   : 'Includes all core modules listed above. Optional add-ons billed separately.'}
               </p>
               <div className="flex flex-col gap-3">
                 <Link to="/contact">
                   <Button variant="primary" className="w-full">
-                    {product.price === 'Included' ? 'Talk to Sales' : 'Start Free Trial'}
+                    {product.priceUSD === null ? 'Talk to Sales' : 'Start Free Trial'}
                   </Button>
                 </Link>
                 <Link to="/pricing">

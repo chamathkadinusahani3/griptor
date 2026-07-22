@@ -12,25 +12,28 @@ import { BlogPage } from './pages/BlogPage';
 
 import { ContactPage } from './pages/ContactPage';
 import { SignupPage } from './pages/SignupPage';
+import { CurrencyProvider } from './context/CurrencyContext';
 export function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/solutions" element={<SolutionsPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:slug" element={<ProductDetailPage />} />
-          <Route path="/industries" element={<IndustriesPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-         
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/get-started" element={<SignupPage />} />
-          <Route path="*" element={<Home />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>);
+    <CurrencyProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/solutions" element={<SolutionsPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:slug" element={<ProductDetailPage />} />
+            <Route path="/industries" element={<IndustriesPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/get-started" element={<SignupPage />} />
+            <Route path="*" element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CurrencyProvider>);
 
 }
