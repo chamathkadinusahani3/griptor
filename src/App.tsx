@@ -12,6 +12,7 @@ import { BlogPage } from './pages/BlogPage';
 
 import { ContactPage } from './pages/ContactPage';
 import { SignupPage } from './pages/SignupPage';
+import { LoginPage } from './pages/LoginPage';
 import { CurrencyProvider } from './context/CurrencyContext';
 export function App() {
   return (
@@ -30,6 +31,7 @@ export function App() {
 
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/get-started" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Home />} />
           </Route>
         </Routes>

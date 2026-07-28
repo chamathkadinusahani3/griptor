@@ -4,7 +4,7 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 import { Reveal } from '../components/ui/Reveal';
 import { Button } from '../components/ui/Button';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { postToAdmin, adminUrl, ApiError } from '../lib/api';
+import { postToAdmin, ApiError } from '../lib/api';
 
 const inputClass =
 'w-full px-4 py-3 rounded-xl bg-[var(--soft-gray)] border border-[var(--border)] text-[var(--navy)] placeholder:text-[var(--text-gray)]/60 focus:outline-none focus:border-[var(--teal)] focus:ring-2 focus:ring-[var(--teal)]/20 transition-all';
@@ -63,11 +63,11 @@ export const SignupPage = () => {
                   <p className="text-[var(--text-gray)] mb-8">
                     Sign in with the email and password you just chose to get started.
                   </p>
-                  <a href={adminUrl('/login')}>
+                  <Link to="/login">
                     <Button size="lg" icon={<ArrowRight className="w-5 h-5" />}>
                       Go to your dashboard
                     </Button>
-                  </a>
+                  </Link>
                 </div> :
 
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -152,9 +152,9 @@ export const SignupPage = () => {
                   </Button>
                   <p className="text-center text-sm text-[var(--text-gray)]">
                     Already have an account?{' '}
-                    <a href={adminUrl('/login')} className="font-semibold text-[var(--teal)] hover:underline">
+                    <Link to="/login" className="font-semibold text-[var(--teal)] hover:underline">
                       Sign in
-                    </a>
+                    </Link>
                   </p>
                 </form>
               }

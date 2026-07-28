@@ -135,18 +135,16 @@ export const ProductDetailPage = () => {
           </Reveal>
 
           {product.priceUSD !== null && (
-            <Reveal delay={0.05}>
-              <div className="flex flex-col items-center gap-3 mb-4">
-                <CurrencySelector />
-                {currency.code !== 'USD' && (
-                  <p className="text-xs text-[var(--text-gray)]">
-                    {isLive
-                      ? `Live exchange rate${ratesUpdatedAt ? ` as of ${ratesUpdatedAt.toLocaleDateString()}` : ''} — all plans are billed in USD.`
-                      : `Prices shown in ${currency.code} are approximate — all plans are billed in USD.`}
-                  </p>
-                )}
-              </div>
-            </Reveal>
+            <div className="flex flex-col items-center gap-3 mb-4">
+              <CurrencySelector />
+              {currency.code !== 'USD' && (
+                <p className="text-xs text-[var(--text-gray)]">
+                  {isLive
+                    ? `Live exchange rate${ratesUpdatedAt ? ` as of ${ratesUpdatedAt.toLocaleDateString()}` : ''} — all plans are billed in USD.`
+                    : `Prices shown in ${currency.code} are approximate — all plans are billed in USD.`}
+                </p>
+              )}
+            </div>
           )}
 
           <Reveal delay={0.1}>

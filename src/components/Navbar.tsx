@@ -69,6 +69,9 @@ export const Navbar = () => {
         </nav>
 
         <div className="hidden xl:flex items-center gap-4">
+          <Link to="/login" className="text-sm font-semibold text-[var(--text-gray)] hover:text-[var(--royal)] transition-colors">
+            Login
+          </Link>
           <Link to="/contact">
             <Button variant="outline" size="sm">
               Free Trial
@@ -124,6 +127,11 @@ export const Navbar = () => {
                 </NavLink>
             )}
               <div className="flex flex-col gap-3 pt-4">
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full">
+                    Login
+                  </Button>
+                </Link>
                 <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
                   <Button variant="outline" className="w-full">
                     Free Trial

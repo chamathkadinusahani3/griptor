@@ -29,6 +29,34 @@ export async function postToAdmin<T>(path: string, data: unknown): Promise<T> {
   return body as T;
 }
 
+/**
+ * Like postToAdmin, but includes credentials so a Set-Cookie in the
+ * response (e.g. a real griptoradmin session on login) is actually stored
+ * by the browser. Only used for /auth/login — every other cross-origin call
+ * (register, leads/submit) doesn't touch cookies and uses postToAdmin.
+ */
+export async function postToAdminWithCredentials<T>(path: string, data: unknown): Promise<T> {
+  if (!ADMIN_ORIGIN) {
+    throw new ApiError(500, 'VITE_ADMIN_ORIGIN is not configured');
+  }
+
+  const res = await fetch(`${ADMIN_ORIGIN}/api${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify(data),
+  });
+
+  const isJson = res.headers.get('content-type')?.includes('application/json');
+  const body = isJson ? await res.json() : undefined;
+
+  if (!res.ok) {
+    throw new ApiError(res.status, body?.error ?? `Request failed with status ${res.status}`);
+  }
+
+  return body as T;
+}
+
 export function adminUrl(path: string): string {
   return `${ADMIN_ORIGIN ?? ''}${path}`;
 }
