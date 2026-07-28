@@ -57,6 +57,23 @@ export async function postToAdminWithCredentials<T>(path: string, data: unknown)
   return body as T;
 }
 
+export async function getFromAdmin<T>(path: string): Promise<T> {
+  if (!ADMIN_ORIGIN) {
+    throw new ApiError(500, 'VITE_ADMIN_ORIGIN is not configured');
+  }
+
+  const res = await fetch(`${ADMIN_ORIGIN}/api${path}`, { method: 'GET' });
+
+  const isJson = res.headers.get('content-type')?.includes('application/json');
+  const body = isJson ? await res.json() : undefined;
+
+  if (!res.ok) {
+    throw new ApiError(res.status, body?.error ?? `Request failed with status ${res.status}`);
+  }
+
+  return body as T;
+}
+
 export function adminUrl(path: string): string {
   return `${ADMIN_ORIGIN ?? ''}${path}`;
 }
